@@ -2,8 +2,11 @@ import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import { useAuthStore, type UserRole } from '../stores/authStore';
 
 // Layouts
-import { MerchantLayout } from '@/components/layouts/MerchantLayout';
-import { PartnerLayout }  from '@/components/layouts/PartnerLayout';
+import { MerchantLayout }   from '@/components/layouts/MerchantLayout';
+import { PartnerLayout }    from '@/components/layouts/PartnerLayout';
+import { AdminLayout }      from '@/components/layouts/AdminLayout';
+import { DataLayout }       from '@/components/layouts/DataLayout';
+import { ManagementLayout } from '@/components/layouts/ManagementLayout';
 
 // Auth
 import LoginPage from '@/pages/auth/LoginPage';
@@ -20,6 +23,17 @@ import TrackingPage             from '@/pages/merchant/TrackingPage';
 // Partner
 import PartnerDashboardPage     from '@/pages/partner/DashboardPage';
 import ApplicationDetailPage    from '@/pages/partner/ApplicationDetailPage';
+
+// Admin
+import AdminDashboardPage            from '@/pages/admin/DashboardPage';
+import AdminApplicationManagementPage from '@/pages/admin/ApplicationManagementPage';
+import AdminPartnerQueuePage         from '@/pages/admin/PartnerQueuePage';
+
+// Data
+import DataIntelligencePage from '@/pages/data/DataIntelligencePage';
+
+// Management
+import ExecutiveDashboardPage from '@/pages/management/ExecutiveDashboardPage';
 
 // ─── Role homes ───────────────────────────────────────────────────────────────
 
@@ -42,7 +56,7 @@ function RequireAuth({ allowedRoles }: { allowedRoles: UserRole[] }) {
   return <Outlet />;
 }
 
-// ─── Stub pages for portals not built yet ────────────────────────────────────
+// ─── Stub pages for unbuilt screens ──────────────────────────────────────────
 
 function ComingSoon({ title }: { title: string }) {
   return (
@@ -109,8 +123,17 @@ export const router = createBrowserRouter([
     path: '/admin',
     element: <RequireAuth allowedRoles={['admin']} />,
     children: [
-      { path: 'dashboard', element: <ComingSoon title="Admin Dashboard" /> },
-      { index: true,       element: <Navigate to="/admin/dashboard" replace /> },
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true,              element: <Navigate to="/admin/dashboard" replace /> },
+          { path: 'dashboard',        element: <AdminDashboardPage /> },
+          { path: 'applications',     element: <AdminApplicationManagementPage /> },
+          { path: 'partners',         element: <AdminPartnerQueuePage /> },
+          { path: 'merchants',        element: <ComingSoon title="Merchant Management" /> },
+          { path: 'sla',              element: <ComingSoon title="SLA Monitor" /> },
+        ],
+      },
     ],
   },
 
@@ -119,8 +142,16 @@ export const router = createBrowserRouter([
     path: '/data',
     element: <RequireAuth allowedRoles={['data']} />,
     children: [
-      { path: 'dashboard', element: <ComingSoon title="Data Intelligence" /> },
-      { index: true,       element: <Navigate to="/data/dashboard" replace /> },
+      {
+        element: <DataLayout />,
+        children: [
+          { index: true,           element: <Navigate to="/data/dashboard" replace /> },
+          { path: 'dashboard',     element: <DataIntelligencePage /> },
+          { path: 'scoring',       element: <DataIntelligencePage /> },
+          { path: 'access',        element: <ComingSoon title="Access Log Detail" /> },
+          { path: 'reports',       element: <ComingSoon title="Reports" /> },
+        ],
+      },
     ],
   },
 
@@ -129,8 +160,16 @@ export const router = createBrowserRouter([
     path: '/management',
     element: <RequireAuth allowedRoles={['management']} />,
     children: [
-      { path: 'dashboard', element: <ComingSoon title="Executive Dashboard" /> },
-      { index: true,       element: <Navigate to="/management/dashboard" replace /> },
+      {
+        element: <ManagementLayout />,
+        children: [
+          { index: true,              element: <Navigate to="/management/dashboard" replace /> },
+          { path: 'dashboard',        element: <ExecutiveDashboardPage /> },
+          { path: 'financials',       element: <ComingSoon title="Financial Reports" /> },
+          { path: 'partners',         element: <ComingSoon title="Partner Strategy" /> },
+          { path: 'risk',             element: <ComingSoon title="Risk Overview" /> },
+        ],
+      },
     ],
   },
 

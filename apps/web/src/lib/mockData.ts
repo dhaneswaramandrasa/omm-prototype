@@ -258,3 +258,126 @@ export const MOCK_PARTNER_APP_DETAIL: PartnerApplicationDetail = {
   slaRemainingSeconds: 5025,
   decision: null,
 };
+
+// ─── Admin Dashboard Data ─────────────────────────────────────────────────────
+
+export const MOCK_ADMIN_STATS = {
+  totalApplications: 2847,
+  totalDelta: 12.3,
+  activePartners: 24,
+  partnersDelta: 4,
+  slaBreaches: 3,
+  breachesDelta: -1,
+  totalVolume: 142_000_000_000,
+  volumeDelta: 22.7,
+};
+
+export const MOCK_PARTNER_PERFORMANCE = [
+  { id: 'PTR-001', name: 'Bank Mandiri',  apps: 1240, badge: 'excellent', approvalRate: 68, avgSlaHours: 2.1 },
+  { id: 'PTR-002', name: 'BCA Finance',   apps: 891,  badge: 'excellent', approvalRate: 72, avgSlaHours: 1.8 },
+  { id: 'PTR-003', name: 'Modalku',       apps: 456,  badge: 'good',      approvalRate: 65, avgSlaHours: 3.2 },
+  { id: 'PTR-004', name: 'Kredivo',       apps: 260,  badge: 'warning',   approvalRate: 58, avgSlaHours: 4.5 },
+];
+
+export const MOCK_SLA_ALERTS = [
+  { partnerId: 'PTR-004', partnerName: 'Kredivo',   type: 'warning', message: 'Avg response 4.5 jam / target: 3 jam' },
+  { partnerId: 'PTR-003', partnerName: 'Amartha',   type: 'breach',  message: '2 aplikasi melebihi batas SLA 24 jam' },
+];
+
+export const MOCK_SYSTEM_HEALTH = {
+  apiUptime: 99.98,
+  avgResponseMs: 124,
+  activeSessions: 1247,
+};
+
+// ─── Admin Application Management Data ───────────────────────────────────────
+
+export const MOCK_ALL_APPLICATIONS = [
+  { applicationId: 'APP-94725183', merchantId: 'MER-45821', merchantName: 'Toko Sejahtera',    partner: 'Bank Mandiri', amount: 50_000_000,  status: 'pending'    as const, slaRemainingSeconds: 5025,   submittedAt: '2026-03-08T20:00:00.000Z' },
+  { applicationId: 'APP-94725182', merchantId: 'MER-45820', merchantName: 'Warung Maju',       partner: 'BCA Finance',  amount: 25_000_000,  status: 'reviewing'  as const, slaRemainingSeconds: 3072,   submittedAt: '2026-03-08T18:00:00.000Z' },
+  { applicationId: 'APP-94725181', merchantId: 'MER-45819', merchantName: 'Toko Berkah',       partner: 'Modalku',      amount: 100_000_000, status: 'approved'   as const, slaRemainingSeconds: 0,       submittedAt: '2026-03-07T10:00:00.000Z' },
+  { applicationId: 'APP-94725180', merchantId: 'MER-45818', merchantName: 'Kios Makmur',       partner: 'Kredivo',      amount: 15_000_000,  status: 'rejected'   as const, slaRemainingSeconds: 0,       submittedAt: '2026-03-06T09:00:00.000Z' },
+  { applicationId: 'APP-94725179', merchantId: 'MER-45817', merchantName: 'Toko Sumber Rezeki',partner: 'Bank Mandiri', amount: 75_000_000,  status: 'pending'    as const, slaRemainingSeconds: 8130,   submittedAt: '2026-03-08T22:00:00.000Z' },
+  { applicationId: 'APP-94725178', merchantId: 'MER-45816', merchantName: 'Warung Barokah',    partner: 'Amartha',      amount: 30_000_000,  status: 'sla_breach' as const, slaRemainingSeconds: 0,       submittedAt: '2026-03-06T08:00:00.000Z' },
+];
+
+// ─── Partner Approval Queue ───────────────────────────────────────────────────
+
+export const MOCK_PARTNER_QUEUE = [
+  {
+    id: 'PQ-001', name: 'PT. Finansial Digital Nusantara', type: 'fintech',      contact: 'Irfan Dhana',
+    currentStage: 'API Security Review', progress: 85, risk: 'low',
+    slaLabel: '3d', slaStatus: 'ok', submittedAt: '2026-02-10',
+  },
+  {
+    id: 'PQ-002', name: 'Bank Sejahtera Tbk',               type: 'bank',         contact: 'Nurul Fitri',
+    currentStage: 'Legal Docs',          progress: 34, risk: 'low',
+    slaLabel: '6d', slaStatus: 'ok', submittedAt: '2026-02-18',
+  },
+  {
+    id: 'PQ-003', name: 'Koperasi Maju Bersama',            type: 'multifinance', contact: 'Budi Santoso',
+    currentStage: 'KYC AML',             progress: 22, risk: 'medium',
+    slaLabel: '4d', slaStatus: 'warning', submittedAt: '2026-02-22',
+  },
+  {
+    id: 'PQ-004', name: 'PT. Pinjaman Modal Rakyat',        type: 'fintech',      contact: 'Linda Sari',
+    currentStage: 'Trustera Meeting',    progress: 67, risk: 'high',
+    slaLabel: '8d', slaStatus: 'overdue', submittedAt: '2026-02-05',
+  },
+];
+
+// ─── Data Intelligence ────────────────────────────────────────────────────────
+
+export const MOCK_SCORE_FACTORS = [
+  { factor: 'Transaction Volume',  description: 'Monthly transaction count and consistency', weight: 25, score: 820 },
+  { factor: 'Revenue Growth',      description: 'YoY and short-term growth trajectory',       weight: 20, score: 755 },
+  { factor: 'Average Ticket Size', description: 'Average transaction value stability',         weight: 15, score: 690 },
+  { factor: 'Business Duration',   description: 'Time using Olsera platform',                  weight: 15, score: 710 },
+  { factor: 'Category Performance',description: 'Product mix and diversification',             weight: 10, score: 640 },
+  { factor: 'Payment Patterns',    description: 'Settlement behavior and timing',              weight: 10, score: 780 },
+  { factor: 'Seasonality Index',   description: 'Business predictability score',               weight: 5,  score: 620 },
+];
+
+export const MOCK_DATA_ACCESS_LOGS = [
+  { timestamp: '2026-03-12 16:28:12', partner: 'Bank Mandiri',  merchantId: 'MER-45621', dataType: 'Aggregate', action: 'Read', status: 'Authorized' },
+  { timestamp: '2026-03-12 15:45:12', partner: 'BCA Finance',   merchantId: 'MER-45624', dataType: 'Aggregate', action: 'Read', status: 'Authorized' },
+  { timestamp: '2026-03-12 14:33:45', partner: 'Modalku',       merchantId: 'MER-45618', dataType: 'Aggregate', action: 'Read', status: 'Authorized' },
+  { timestamp: '2026-03-12 13:28:23', partner: 'Kredivo',       merchantId: 'MER-45618', dataType: 'Aggregate', action: 'Read', status: 'Authorized' },
+];
+
+// ─── Executive Dashboard ──────────────────────────────────────────────────────
+
+export const MOCK_EXEC_STATS = {
+  totalApplications: 12_847,    appsDelta: 13.9,
+  approvalRate: 68.2,           approvalDelta: 3.8,
+  totalVolume: 142_000_000_000, volumeDelta: 18.2,
+  conversionRate: 94.5,         conversionDelta: 4.7,
+};
+
+export const MOCK_ECOSYSTEM_FLOW = {
+  merchants: 12_847,
+  mitraScore: 782,
+  capitalSources: 24,
+};
+
+export const MOCK_PARTNER_YIELD = [
+  { name: 'Bank Mandiri',  apps: 5240, volume: 48_200_000_000, approvalRate: 68 },
+  { name: 'BCA Finance',   apps: 3897, volume: 39_700_000_000, approvalRate: 72 },
+  { name: 'Modalku',       apps: 2514, volume: 24_500_000_000, approvalRate: 65 },
+  { name: 'Kredivo',       apps: 1196, volume: 10_600_000_000, approvalRate: 58 },
+];
+
+export const MOCK_MERCHANT_GROWTH = [
+  { month: 'Oct', count: 1420 },
+  { month: 'Nov', count: 1640 },
+  { month: 'Dec', count: 1950 },
+  { month: 'Jan', count: 2240 },
+  { month: 'Feb', count: 2580 },
+  { month: 'Mar', count: 2880 },
+];
+
+export const MOCK_STRATEGIC_METRICS = {
+  digitalPenetration: 34.2,
+  retentionRate: 91.8,
+  npsScore: 72,
+};
