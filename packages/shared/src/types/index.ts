@@ -1,1 +1,2 @@
-// Shared TypeScript types — populated in OLS-6 (E2-T15)
+// Shared TypeScript types — populated in E2-T15
+export {};

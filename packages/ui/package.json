@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "@omm/shared": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
