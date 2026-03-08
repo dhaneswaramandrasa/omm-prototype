@@ -17,6 +17,17 @@ Olsera Mitra Modal connects **30,000+ micro-merchants** (warungs/UMKM) on the Se
 
 ---
 
+## Committed Partners
+
+| Partner | Type | Integration Model | Status |
+|---------|------|-------------------|--------|
+| **Adapundi** | P2P Fintech | Redirect — merchant sent to Adapundi via `https://h5-app.adapundi.com/?channel2=h5Olsera` | 🟢 **Live in prototype** |
+| **OCBC — KTA Cashbiz** | Bank | Direct URL (pending from OCBC); product live in simulator (0.99% flat, Rp 25jt–2M, 6–36 bulan) | 🟡 **Coming Soon** |
+
+> Both partners are live in the `demo/management-prototype` branch. Adapundi opens the redirect URL directly from the PartnerCard. OCBC shows as "Segera Hadir" (URL pending from partner). Real API integration is E12 (Phase 2).
+
+---
+
 ## Current Build Status
 
 | Epic | Description | Status |
@@ -32,7 +43,7 @@ Olsera Mitra Modal connects **30,000+ micro-merchants** (warungs/UMKM) on the Se
 | E9 — DB & Seeds | Migrations scaffolded; full seed data pending | 🔄 Partial |
 | E10 — Data/Mgmt Views | Executive + Data Intelligence pages built (mock); API pending | 🔄 Frontend ✅ · API ⬜ |
 | E11 — Testing & QA | Not started | ⬜ Todo |
-| E12 — Partner API (Phase 2) | Blocked on partner commitment + API docs | 🔒 Phase 2 |
+| E12 — Partner API | Adapundi (redirect) + OCBC (coming soon) integrated in prototype; real API integration is Phase 2 | 🔄 Phase 1 Redirect ✅ · Phase 2 API ⬜ |
 | E13 — Production Infra (Phase 2) | Not started | 🔒 Phase 2 |
 
 ### Active branches
@@ -274,9 +285,10 @@ See `docs/API_LIST.md` for all endpoints, request/response schemas, and error co
 - [ ] Automated test suite (E11)
 - [ ] User testing with 20–30 merchants
 
-### 🔒 Phase 2 — Integration & Production
-*Blocked on: ≥1 committed partner with API documentation*
-- [ ] Real partner API integrations (E12)
+### 🔄 Phase 2 — Integration & Production
+*Partners committed: **Adapundi** (redirect live) + **OCBC KTA Cashbiz** (URL pending). Real API integration blocked on API documentation from partners.*
+- [ ] Adapundi full API integration — submit via API instead of redirect (E12-T02)
+- [ ] OCBC KTA Cashbiz API integration — URL + sandbox credentials pending (E12-T03)
 - [ ] Production infrastructure on AWS (E13)
 - [ ] Security audit + load testing
 - [ ] Partner UAT signoff

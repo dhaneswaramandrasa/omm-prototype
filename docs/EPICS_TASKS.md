@@ -20,7 +20,7 @@
 | E9 — DB & Seeds | 🔄 Partial | Migrations scaffolded (E1); full seed SQL files pending |
 | E10 — Data/Mgmt Views | 🔄 Frontend ✅ · Backend ⬜ | DataIntelligencePage + ExecutiveDashboard built (mock); API pending |
 | E11 — Testing & QA | ⬜ Todo | Not started |
-| E12 — Partner API | 🔒 Phase 2 | Blocked on partner commitment |
+| E12 — Partner API | 🔄 Phase 1 Redirect ✅ · Phase 2 API ⬜ | 2 committed partners integrated in prototype (redirect model); real API = Phase 2 |
 | E13 — Production Infra | 🔒 Phase 2 | Not started |
 
 **Active branches:**
@@ -47,7 +47,7 @@
 | E9 | Database & Seed Data | 1 | P0 | 🔄 In Progress |
 | E10 | Data Team & Management Views | 1 | P1 | 🔄 In Progress |
 | E11 | Testing & QA | 1 | P1 | ⬜ Todo |
-| E12 | Partner API Integration (Real) | 2 | P0 | 🔒 Phase 2 |
+| E12 | Partner API Integration (Real) | 1→2 | P0 | 🔄 Phase 1 Redirect ✅ · Phase 2 API ⬜ |
 | E13 | Production Infrastructure & Security | 2 | P0 | 🔒 Phase 2 |
 
 ---
@@ -242,7 +242,7 @@
 | E9-T01 | Write all DB migrations | 001–010 covering all tables in PRD data model; run cleanly with `npm run db:migrate` | E1-T07 | 4h |
 | E9-T02 | Seed demo users (5 roles) | merchant@demo.com, partner.mandiri@demo.com, admin@olsera.com, data@olsera.com, coo@olsera.com | E9-T01 | 1h |
 | E9-T03 | Seed demo merchants | 10 merchants with varying profiles, 2-3 stores each, 12mo transaction history simulation | E9-T01 | 3h |
-| E9-T04 | Seed demo partners + products | Bank Mandiri, BCA Finance, Modalku, Amartha, Kredivo, GoTyme — each with 1-2 products, SLA config | E9-T01 | 2h |
+| E9-T04 | Seed demo partners + products | Bank Mandiri, BCA Finance, Modalku, Amartha, Kredivo, GoTyme + **Adapundi** (redirect) + **OCBC KTA Cashbiz** (coming soon) — each with 1-2 products, SLA config | E9-T01 | 2h |
 | E9-T05 | Seed demo applications | 15–20 applications in various statuses (pending, reviewing, approved, rejected, sla_breach) | E9-T03 E9-T04 | 2h |
 | E9-T06 | Seed partner onboarding queue | 4 partners in queue at different stages and risk levels (matches SCR-ADM-04 Figma) | E9-T01 | 1h |
 | E9-T07 | Add `npm run db:reset` script | Drops all tables, re-runs migrations, re-seeds; for dev only; blocked in production | E9-T01 | 1h |
@@ -290,19 +290,30 @@
 
 ---
 
-## E12 — Partner API Integration (Phase 2 Only)
+## E12 — Partner API Integration 🔄 Phase 1 Redirect ✅ · Phase 2 API ⬜
 
-*Blocked on: committed partner + API documentation received.*
+### Committed Partners (as of 9 Mar 2026)
+
+| Partner | Type | Rate | Tenor | Limit | Phase 1 Model | Phase 2 |
+|---------|------|------|-------|-------|---------------|---------|
+| **Adapundi** | P2P Fintech | 1.5% flat/mo | 3–12 bulan | Rp 5jt–500jt | Redirect → `https://h5-app.adapundi.com/?channel2=h5Olsera` | Full API (awaiting docs) |
+| **OCBC — KTA Cashbiz** | Bank | 0.89%–1.59% flat/mo (0.99% in simulator) | 6–36 bulan | Rp 25jt–2M | Coming Soon (URL pending from OCBC) | Full API (URL + docs pending) |
+
+> **Phase 1 (done):** Both partners are live in `demo/management-prototype`. `PartnerCard` renders Adapundi as an external redirect card (opens partner URL in new tab) and OCBC as a "Segera Hadir" card. Neither goes through Olsera's application flow yet. `SimulationStep2` groups them under "Mitra Resmi Olsera" section, separate from simulation/demo partners.
+
+> **Phase 2 (blocked on API docs):** Once partner provides sandbox credentials + API spec, build the `IPartnerConnector` adapter and wire into `matchingService` / `applicationService`.
+
+### Phase 2 Tasks (blocked on API documentation)
 
 | Task ID | Title | Acceptance Criteria | Deps | Est |
 |---------|-------|---------------------|------|-----|
 | E12-T01 | Partner API connector interface | `IPartnerConnector` interface: `fetchProducts()`, `submitApplication()`, `getDecision()` | E5-T01 | 3h |
-| E12-T02 | Implement connector for Partner A | Real API calls to Partner A sandbox; all methods return typed responses | E12-T01 | 8h |
-| E12-T03 | Implement connector for Partner B | Same as E12-T02 for Partner B | E12-T01 | 8h |
+| E12-T02 | Implement Adapundi connector | Real API calls to Adapundi sandbox; merchant redirect replaced by full API submission | E12-T01 | 8h |
+| E12-T03 | Implement OCBC connector | Real API calls to OCBC KTA Cashbiz sandbox; URL provided by OCBC | E12-T01 | 8h |
 | E12-T04 | Replace mock simulation with live partner products | `matchingService` fetches live products from connectors | E12-T02 | 4h |
 | E12-T05 | Real offer submission to partner | `POST /merchant/applications` routes to partner API in real-time | E12-T02 | 4h |
 | E12-T06 | Webhook receiver for partner decisions | `POST /webhooks/partner/:partnerId/decision` — receives async decisions | E12-T02 | 5h |
-| E12-T07 | Partner sandbox UAT | All flows tested in partner sandbox env; signoff from partner | E12-T05 | 8h |
+| E12-T07 | Partner sandbox UAT | All flows tested in partner sandbox env; signoff from Adapundi + OCBC | E12-T05 | 8h |
 
 ---
 
