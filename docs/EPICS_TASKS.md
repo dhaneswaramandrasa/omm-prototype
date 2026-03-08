@@ -1,31 +1,58 @@
 # Epics & Tasks — Olsera Mitra Modal
-**Phase 1 Duration:** 8 weeks  
-**Team:** 1 Frontend Dev, 1 Backend Dev, 0.5 UI/UX, 0.5 QA, 0.5 DevOps  
+**Phase 1 Duration:** 8 weeks
+**Team:** 1 Frontend Dev, 1 Backend Dev, 0.5 UI/UX, 0.5 QA, 0.5 DevOps
 **Task format:** ID · Title · Acceptance Criteria · Dependencies · Estimate
+
+---
+
+## Build Status (as of 9 Mar 2026)
+
+| Epic | Status | Notes |
+|------|--------|-------|
+| E1 — Foundation | ✅ Done | All tasks complete and In Review on Linear |
+| E2 — Design System | ✅ Done | 9 components + 5 layouts built; In Review on Linear |
+| E3 — Auth & RBAC | 🔄 Frontend ✅ · Backend ⬜ | LoginPage + role routing done (mock); API endpoints pending |
+| E4 — Merchant Flow | 🔄 Frontend ✅ · Backend ⬜ | All 7 pages built with mock data; API + DB pending |
+| E5 — Partner Portal | 🔄 Partial · Backend ⬜ | Dashboard + AppDetail built; Product Catalog, Registration pending; API pending |
+| E6 — Admin Portal | 🔄 Frontend ✅ · Backend ⬜ | Dashboard + AppMgmt + PartnerQueue built; API pending |
+| E7 — Scoring Engine | ⬜ Next | Not started — **start here next** |
+| E8 — SLA Management | 🔄 UI ✅ · Backend ⬜ | SLATimer component built; Redis + cron job pending |
+| E9 — DB & Seeds | 🔄 Partial | Migrations scaffolded (E1); full seed SQL files pending |
+| E10 — Data/Mgmt Views | 🔄 Frontend ✅ · Backend ⬜ | DataIntelligencePage + ExecutiveDashboard built (mock); API pending |
+| E11 — Testing & QA | ⬜ Todo | Not started |
+| E12 — Partner API | 🔒 Phase 2 | Blocked on partner commitment |
+| E13 — Production Infra | 🔒 Phase 2 | Not started |
+
+**Active branches:**
+- `main` — stable base (E1 merged)
+- `ols-18/ui-components` — E2 components (In Review, not yet merged to main)
+- `demo/management-prototype` — full clickable prototype, all 5 portals, no backend required
+
+**Recommended next epic order:** E3 backend → E7 → E4 backend → E8 backend → E5 backend → E6 backend → E9 seeds → E10 backend → E11
 
 ---
 
 ## Epic Map
 
-| # | Epic | Phase | Priority |
-|---|------|-------|----------|
-| E1 | Project Foundation & Dev Environment | 1 | P0 |
-| E2 | Design System & Shared Components | 1 | P0 |
-| E3 | Authentication & RBAC | 1 | P0 |
-| E4 | Merchant Flow — Simulation & Application | 1 | P0 |
-| E5 | Partner Portal — Review & Decision | 1 | P0 |
-| E6 | Admin Portal — Operations & Monitoring | 1 | P0 |
-| E7 | Scoring & Matching Engine | 1 | P0 |
-| E8 | SLA Management | 1 | P0 |
-| E9 | Database & Seed Data | 1 | P0 |
-| E10 | Data Team & Management Views | 1 | P1 |
-| E11 | Testing & QA | 1 | P1 |
-| E12 | Partner API Integration (Real) | 2 | P0 |
-| E13 | Production Infrastructure & Security | 2 | P0 |
+| # | Epic | Phase | Priority | Status |
+|---|------|-------|----------|--------|
+| E1 | Project Foundation & Dev Environment | 1 | P0 | ✅ Done |
+| E2 | Design System & Shared Components | 1 | P0 | ✅ Done |
+| E3 | Authentication & RBAC | 1 | P0 | 🔄 In Progress |
+| E4 | Merchant Flow — Simulation & Application | 1 | P0 | 🔄 In Progress |
+| E5 | Partner Portal — Review & Decision | 1 | P0 | 🔄 In Progress |
+| E6 | Admin Portal — Operations & Monitoring | 1 | P0 | 🔄 In Progress |
+| E7 | Scoring & Matching Engine | 1 | P0 | ⬜ Todo |
+| E8 | SLA Management | 1 | P0 | 🔄 In Progress |
+| E9 | Database & Seed Data | 1 | P0 | 🔄 In Progress |
+| E10 | Data Team & Management Views | 1 | P1 | 🔄 In Progress |
+| E11 | Testing & QA | 1 | P1 | ⬜ Todo |
+| E12 | Partner API Integration (Real) | 2 | P0 | 🔒 Phase 2 |
+| E13 | Production Infrastructure & Security | 2 | P0 | 🔒 Phase 2 |
 
 ---
 
-## E1 — Project Foundation & Dev Environment
+## E1 — Project Foundation & Dev Environment ✅ Done
 
 **Goal:** Monorepo structure, tooling, Docker, CI skeleton ready for team to start building.
 
@@ -45,7 +72,7 @@
 
 ---
 
-## E2 — Design System & Shared Components
+## E2 — Design System & Shared Components ✅ Done
 
 **Goal:** All reusable UI components built and documented before portals are built.
 
@@ -69,7 +96,10 @@
 
 ---
 
-## E3 — Authentication & RBAC
+## E3 — Authentication & RBAC 🔄 In Progress
+
+> **Done:** `LoginPage.tsx` (mock auth), role-based route guards, Zustand auth store, 5 demo account credentials
+> **Pending:** `POST /auth/login`, `POST /auth/refresh`, `POST /auth/logout` backend; RBAC middleware; real DB users; forgot password; wire frontend to real API
 
 **Goal:** Secure login, token management, and role-based routing working end-to-end.
 
@@ -87,7 +117,10 @@
 
 ---
 
-## E4 — Merchant Flow
+## E4 — Merchant Flow 🔄 In Progress
+
+> **Done (mock data):** Dashboard, SimulationStep1, SimulationStep2, OfferConfirmation, ConsentPage, SuccessPage, TrackingPage — all on `demo/management-prototype`
+> **Pending:** DB tables, all API endpoints, wire frontend to real API, LandingPage (SCR-MER-01), SupportTickets page
 
 **Goal:** Complete merchant journey from landing → simulation → consent → application → tracking.
 
@@ -114,7 +147,10 @@
 
 ---
 
-## E5 — Partner Portal
+## E5 — Partner Portal 🔄 In Progress
+
+> **Done (mock data):** Dashboard, ApplicationDetailPage (with approve/reject modal + data deletion warning)
+> **Pending:** DB tables, all API endpoints, ProductCatalog page, Registration page, full Applications list page, wire frontend to real API
 
 **Goal:** Partner can log in, see pending applications, review merchant data, and make decisions.
 
@@ -136,7 +172,10 @@
 
 ---
 
-## E6 — Admin Portal
+## E6 — Admin Portal 🔄 In Progress
+
+> **Done (mock data):** Dashboard (KPIs + partner perf + SLA alerts + system health), ApplicationManagementPage (search/filter/table), PartnerQueuePage (onboarding pipeline)
+> **Pending:** All API endpoints, Application Detail admin view (SCR-ADM-03), Partner Review modal, Partner Health page (SCR-ADM-05)
 
 **Goal:** Olsera team can monitor all applications, manage partner onboarding, see SLA status.
 
@@ -158,7 +197,7 @@
 
 ---
 
-## E7 — Scoring & Matching Engine
+## E7 — Scoring & Matching Engine ⬜ Todo — Start Here Next
 
 **Goal:** Mitra Score calculation and partner matching logic working with real data.
 
@@ -173,7 +212,10 @@
 
 ---
 
-## E8 — SLA Management
+## E8 — SLA Management 🔄 In Progress
+
+> **Done:** `SLATimer` UI component (counts down live, turns red < 30 min)
+> **Pending:** `sla_config` + `sla_breaches` DB tables, Redis TTL on submit, cron breach detector, `GET /admin/sla/alerts`, SLA remaining in all list APIs
 
 **Goal:** Per-partner SLA timers running in Redis, breach detection, and alert surfacing.
 
@@ -188,7 +230,10 @@
 
 ---
 
-## E9 — Database & Seed Data
+## E9 — Database & Seed Data 🔄 In Progress
+
+> **Done:** Migration runner set up (E1); basic table stubs
+> **Pending:** Complete migrations 001–010 for all tables; all 7 seed SQL files (users, merchants, partners, products, applications, scores, onboarding queue)
 
 **Goal:** All tables created, migrations ordered, and rich dev seed data for demo.
 
@@ -204,7 +249,10 @@
 
 ---
 
-## E10 — Data Team & Management Views
+## E10 — Data Team & Management Views 🔄 In Progress
+
+> **Done (mock data):** `DataIntelligencePage` (score factors, tier distribution, sample score card, UU PDP audit log), `ExecutiveDashboardPage` (KPI header, ecosystem flow, partner yield, growth bar chart, strategic metrics)
+> **Pending:** All 4 API endpoints (`/data/intelligence/*`, `/management/dashboard`), wire pages to real data
 
 **Goal:** Internal analytics views for data team and executive dashboard.
 
@@ -219,7 +267,7 @@
 
 ---
 
-## E11 — Testing & QA
+## E11 — Testing & QA ⬜ Todo
 
 **Goal:** Critical paths tested; demo-ready quality.
 
