@@ -92,9 +92,15 @@ export interface Partner {
   rateType: RateType;
   minTenor: number;
   maxTenor: number;
+  minAmount?: number;
+  maxAmount?: number;
   tags: string[];
   estimatedMonthlyInstallment: number;
   minScore: number;
+  /** If set, clicking the card opens this URL directly instead of going through Olsera's application flow */
+  externalUrl?: string;
+  /** If true, shows "Coming Soon" — URL not yet available */
+  comingSoon?: boolean;
 }
 
 export interface IneligiblePartner {

@@ -13,18 +13,14 @@ export default function SimulationStep2Page() {
     return null;
   }
 
-  const handleSelect = (partnerId: string) => {
-    setSelectedPartner(partnerId);
-  };
+  const committedPartners = MOCK_PARTNERS.filter((p) => p.externalUrl || p.comingSoon);
+  const simulationPartners = MOCK_PARTNERS.filter((p) => !p.externalUrl && !p.comingSoon);
 
-  const handleNext = () => {
-    if (!selectedPartnerId) return;
-    navigate('/merchant/offer-confirmation');
-  };
+  const handleSelect = (partnerId: string) => { setSelectedPartner(partnerId); };
+  const handleNext = () => { if (selectedPartnerId) navigate('/merchant/offer-confirmation'); };
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Stepper */}
       <div className="flex items-center justify-center gap-3 mb-8">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-success text-white flex items-center justify-center text-sm font-bold">✓</div>
@@ -36,64 +32,65 @@ export default function SimulationStep2Page() {
           <span className="text-sm font-semibold text-primary-blue">Pilih Mitra</span>
         </div>
       </div>
-
       <div className="text-center mb-2">
-        <h1 className="text-2xl font-bold text-text-primary">
-          Pilih <span className="text-accent-blue">Mitra Terbaik</span>
-        </h1>
+        <h1 className="text-2xl font-bold text-text-primary">Pilih <span className="text-accent-blue">Mitra Terbaik</span></h1>
       </div>
-
-      {/* Summary row */}
       <div className="flex items-center justify-center gap-4 text-sm text-text-secondary mb-6">
         <span>Modal: <strong className="text-text-primary">{formatRupiah(amount)}</strong></span>
         <span>•</span>
         <span>Tenor: <strong className="text-text-primary">{tenor} Bulan</strong></span>
       </div>
-
-      {/* Info banner */}
       <div className="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-sm text-accent-blue">
         <span className="text-lg">🛡️</span>
         <div>
           <p className="font-semibold">Mitra yang ditampilkan sesuai profil Anda</p>
-          <p className="text-blue-600/70 text-xs mt-0.5">
-            Semua keputusan kredit dibuat oleh mitra. Olsera hanya memfasilitasi koneksi antara Anda dengan mitra yang tepat.
-          </p>
+          <p className="text-blue-600/70 text-xs mt-0.5">Semua keputusan kredit dibuat oleh mitra. Olsera hanya memfasilitasi koneksi antara Anda dengan mitra yang tepat.</p>
         </div>
       </div>
 
-      {/* Available partners */}
-      <div className="mb-6">
-        <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wide mb-3">
-          Mitra yang Tersedia ({MOCK_PARTNERS.length})
-        </h2>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {MOCK_PARTNERS.map((partner) => (
-            <PartnerCard
-              key={partner.partnerId}
-              partner={partner}
-              selected={selectedPartnerId === partner.partnerId}
-              onSelect={handleSelect}
-            />
-          ))}
+      {committedPartners.length > 0 && (
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wide">Mitra Resmi Olsera</h2>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-success/10 text-success border border-success/20 font-medium">
+              {committedPartners.filter((p) => p.externalUrl).length} Live
+            </span>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {committedPartners.map((partner) => <PartnerCard key={partner.partnerId} partner={partner} />)}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Ineligible partners */}
+      {simulationPartners.length > 0 && (
+        <div className="mb-6">
+          {committedPartners.length > 0 && <div className="h-px bg-gray-200 mb-4" />}
+          <div className="flex items-center gap-2 mb-3">
+            <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wide">Mitra Simulasi ({simulationPartners.length})</h2>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-text-secondary border border-gray-200">Contoh</span>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {simulationPartners.map((partner) => (
+              <PartnerCard
+                key={partner.partnerId}
+                partner={partner}
+                selected={selectedPartnerId === partner.partnerId}
+                onSelect={handleSelect}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {MOCK_INELIGIBLE_PARTNERS.length > 0 && (
         <div className="mb-8">
           <div className="h-px bg-gray-200 mb-4" />
-          <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wide mb-3">
-            Tidak Memenuhi Kriteria
-          </h2>
+          <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wide mb-3">Tidak Memenuhi Kriteria</h2>
           <div className="space-y-2">
             {MOCK_INELIGIBLE_PARTNERS.map((p) => (
               <div key={p.partnerId} className="rounded-xl border border-gray-200 p-4 bg-gray-50 opacity-70">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-text-secondary">{p.partnerName}</p>
-                    <p className="text-xs text-text-secondary/70 mt-0.5 capitalize">{p.partnerType}</p>
-                  </div>
-                </div>
+                <p className="font-medium text-text-secondary">{p.partnerName}</p>
+                <p className="text-xs text-text-secondary/70 mt-0.5 capitalize">{p.partnerType}</p>
                 <p className="text-xs text-gray-400 mt-2 italic">{p.reasonLabel}</p>
               </div>
             ))}
@@ -101,7 +98,6 @@ export default function SimulationStep2Page() {
         </div>
       )}
 
-      {/* CTAs */}
       <div className="flex gap-3">
         <button
           onClick={() => navigate('/merchant/simulate/step1')}

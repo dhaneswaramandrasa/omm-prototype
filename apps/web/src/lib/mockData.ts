@@ -57,6 +57,38 @@ export const MOCK_MITRA_SCORE: MitraScore = {
 // ─── Partners ─────────────────────────────────────────────────────────────────
 
 export const MOCK_PARTNERS: Partner[] = [
+  // ── Committed partners (live redirect) ─────────────────────────────────────
+  {
+    partnerId: 'PTR-ADP',
+    partnerName: 'Adapundi',
+    partnerType: 'fintech',
+    interestRate: 0.015,            // 1.5% flat/bulan
+    rateType: 'flat',
+    minTenor: 3,
+    maxTenor: 12,
+    minAmount: 5_000_000,
+    maxAmount: 500_000_000,
+    tags: ['Cepat Cair', 'Digital Apply', 'Tanpa Agunan'],
+    estimatedMonthlyInstallment: 4_917_000,
+    minScore: 500,
+    externalUrl: 'https://h5-app.adapundi.com/?channel2=h5Olsera',
+  },
+  {
+    partnerId: 'PTR-OCBC',
+    partnerName: 'OCBC — KTA Cashbiz',
+    partnerType: 'bank',
+    interestRate: 0.0099,           // 0.99% flat/bulan (dari product sheet OCBC)
+    rateType: 'flat',
+    minTenor: 6,
+    maxTenor: 36,
+    minAmount: 25_000_000,
+    maxAmount: 2_000_000_000,
+    tags: ['Limit s/d Rp 2M', 'Bunga Kompetitif', 'Provisi 1%'],
+    estimatedMonthlyInstallment: 4_662_000,
+    minScore: 600,
+    comingSoon: true,               // URL belum diterima dari OCBC
+  },
+  // ── Demo / simulation partners ──────────────────────────────────────────────
   {
     partnerId: 'PTR-001',
     partnerName: 'Bank Mandiri',
@@ -273,10 +305,12 @@ export const MOCK_ADMIN_STATS = {
 };
 
 export const MOCK_PARTNER_PERFORMANCE = [
-  { id: 'PTR-001', name: 'Bank Mandiri',  apps: 1240, badge: 'excellent', approvalRate: 68, avgSlaHours: 2.1 },
-  { id: 'PTR-002', name: 'BCA Finance',   apps: 891,  badge: 'excellent', approvalRate: 72, avgSlaHours: 1.8 },
-  { id: 'PTR-003', name: 'Modalku',       apps: 456,  badge: 'good',      approvalRate: 65, avgSlaHours: 3.2 },
-  { id: 'PTR-004', name: 'Kredivo',       apps: 260,  badge: 'warning',   approvalRate: 58, avgSlaHours: 4.5 },
+  { id: 'PTR-ADP',  name: 'Adapundi',     apps: 312,  badge: 'excellent', approvalRate: 78, avgSlaHours: 0.5,  isLive: true },
+  { id: 'PTR-OCBC', name: 'OCBC',         apps: 0,    badge: 'good',      approvalRate: 0,  avgSlaHours: 0,    isLive: false, comingSoon: true },
+  { id: 'PTR-001',  name: 'Bank Mandiri', apps: 1240, badge: 'excellent', approvalRate: 68, avgSlaHours: 2.1,  isLive: false },
+  { id: 'PTR-002',  name: 'BCA Finance',  apps: 891,  badge: 'excellent', approvalRate: 72, avgSlaHours: 1.8,  isLive: false },
+  { id: 'PTR-003',  name: 'Modalku',      apps: 456,  badge: 'good',      approvalRate: 65, avgSlaHours: 3.2,  isLive: false },
+  { id: 'PTR-004',  name: 'Kredivo',      apps: 260,  badge: 'warning',   approvalRate: 58, avgSlaHours: 4.5,  isLive: false },
 ];
 
 export const MOCK_SLA_ALERTS = [
@@ -361,10 +395,11 @@ export const MOCK_ECOSYSTEM_FLOW = {
 };
 
 export const MOCK_PARTNER_YIELD = [
-  { name: 'Bank Mandiri',  apps: 5240, volume: 48_200_000_000, approvalRate: 68 },
-  { name: 'BCA Finance',   apps: 3897, volume: 39_700_000_000, approvalRate: 72 },
-  { name: 'Modalku',       apps: 2514, volume: 24_500_000_000, approvalRate: 65 },
-  { name: 'Kredivo',       apps: 1196, volume: 10_600_000_000, approvalRate: 58 },
+  { name: 'Adapundi',      apps: 312,  volume: 4_680_000_000,  approvalRate: 78, isLive: true },
+  { name: 'Bank Mandiri',  apps: 5240, volume: 48_200_000_000, approvalRate: 68, isLive: false },
+  { name: 'BCA Finance',   apps: 3897, volume: 39_700_000_000, approvalRate: 72, isLive: false },
+  { name: 'Modalku',       apps: 2514, volume: 24_500_000_000, approvalRate: 65, isLive: false },
+  { name: 'Kredivo',       apps: 1196, volume: 10_600_000_000, approvalRate: 58, isLive: false },
 ];
 
 export const MOCK_MERCHANT_GROWTH = [
