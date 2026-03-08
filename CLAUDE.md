@@ -37,16 +37,16 @@ This file is the primary instruction set for Claude Code. **Read this before tou
 
 1. Pull the ticket from Linear:
    ```
-   mcp__linear-server__get_issue  { issueId: "OMM-XX" }
+   mcp__linear-server__get_issue  { issueId: "OLS-XX" }
    ```
 2. Read comments on the immediately preceding ticket for handoff notes:
    ```
-   mcp__linear-server__list_comments  { issueId: "OMM-XX" }
+   mcp__linear-server__list_comments  { issueId: "OLS-XX" }
    ```
 3. Read the full description, acceptance criteria, and any API test cases in the ticket body.
 4. Set status to **In Progress**:
    ```
-   mcp__linear-server__save_issue  { issueId: "OMM-XX", status: "In Progress" }
+   mcp__linear-server__save_issue  { issueId: "OLS-XX", status: "In Progress" }
    ```
 
 ### Branch naming
@@ -65,7 +65,7 @@ If the ticket is **blocked by** a previous ticket not yet merged, branch off tha
 
 Add implementation notes as comments on the ticket:
 ```
-mcp__linear-server__save_comment  { issueId: "OMM-XX", body: "..." }
+mcp__linear-server__save_comment  { issueId: "OLS-XX", body: "..." }
 ```
 
 If a blocker is discovered, comment with blocker details and leave status as **In Progress**.
@@ -161,7 +161,7 @@ feat(ui): build ConsentPage with data scope checklist and UU PDP disclaimer
 ### Creating a PR
 
 Title format: `[{TICKET-ID}] {ticket title}`
-Example: `[OMM-22] Merchant Simulation Step 1 — Amount & Tenor Selector`
+Example: `[OLS-22] Merchant Simulation Step 1 — Amount & Tenor Selector`
 
 PR description format:
 ```markdown
