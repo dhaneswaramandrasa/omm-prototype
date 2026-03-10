@@ -12,9 +12,9 @@
 
 > Both partners are live in `demo/management-prototype`. See `OMM-2026-Roadmap.xlsx` in this folder for the full visual timeline.
 
-> **Note — Backoffice version:** A separate backoffice application (not this web app) is also targeting Adapundi and OCBC integration by end of March 2026.
+> **Note — Backoffice version:** A separate backoffice application (not this web app) targets Adapundi integration by **end of March 2026**, and OCBC integration by **end of April 2026**.
 
-> **Note — Web app redirect:** For this web app, the Adapundi redirect and OCBC "Coming Soon" card are already live in the prototype. Production deployment of these two cards (Phase 1 redirect model only — not full API) targets end of March alongside the main app.
+> **Note — Web app redirect:** For this web app, the Adapundi redirect and OCBC "Coming Soon" card are already live in the prototype. Production deployment of these two cards (Phase 1 redirect model only — not full API) targets **end of April** alongside the full merchant flow.
 
 ---
 
@@ -23,9 +23,9 @@
 | Phase | Objective | Key Deliverables | Target Go Live | Risk Level | Owner |
 |-------|-----------|------------------|----------------|------------|-------|
 | **Phase 1 — Foundation** | Monorepo, Tooling & Design System | Monorepo, TypeScript, Docker, Design System, Auth | 1 Mar | P0 - Blocker | Product / Engineering |
-| **Phase 2 — Merchant Flow** | Complete Merchant UX | 7 merchant pages, Scoring Engine, full Simulation flow + Adapundi redirect + OCBC card | 31 Mar | P0 - Blocker | Product / Engineering |
-| **Phase 3 — Partner Portal** | Partner Decision Layer | Partner dashboard, App review, Approve/Reject, SLA timers | 15 Apr | P0 - Critical | Product / Engineering |
-| **Phase 4 — Admin & Data** | Operations & Analytics Layer | Admin portal, Data Intelligence, Executive Dashboard | 30 Apr | P1 - High | Product / Engineering |
+| **Phase 2 — Merchant Flow** | Complete Merchant UX | 7 merchant pages, Scoring Engine, full Simulation flow + Adapundi redirect + OCBC card | 30 Apr | P0 - Blocker | Product / Engineering |
+| **Phase 3 — Partner Portal** | Partner Decision Layer | Partner dashboard, App review, Approve/Reject, SLA timers | 31 May | P0 - Critical | Product / Engineering |
+| **Phase 4 — Admin & Data** | Operations & Analytics Layer | Admin portal, Data Intelligence, Executive Dashboard | 31 May | P1 - High | Product / Engineering |
 | **Phase 5 — Backend APIs** | Real API Layer + QA | All endpoints, DB migrations, Seed data, Automated tests | 31 May | P1 - High | Product / Engineering |
 | **Phase 6 — Partner Integration** | Live Partner Integration | Adapundi full API, OCBC integration, Production infrastructure | 30 Jun | P1 - High | Product / Engineering |
 
@@ -41,19 +41,19 @@
 | **E2** | Design System & Shared Components | Phase 1 — Foundation | 1 Mar | P0 - Blocker | E1 (Boilerplate Setup) | ✅ Done |
 | **E3** | Authentication & RBAC | Phase 1 — Foundation | 10 Mar | P0 - Blocker | E2 (Design System) | 🔄 In Progress |
 | **E7** | Scoring & Matching Engine | Phase 2 — Merchant Flow | 20 Mar | P0 - Blocker | E1 (DB Schema) | 🔄 In Progress |
-| **E4** | Merchant Flow — Simulation & Application | Phase 2 — Merchant Flow | 31 Mar | P0 - Blocker | E3 (Auth), E7 (Scoring) | 🔄 Frontend ✅ · API ⬜ |
-| **E12** *(Phase 1 only)* | Partner Redirect Integration — Adapundi + OCBC | Phase 2 — Merchant Flow | 31 Mar | P0 - Critical | E4 (Merchant Flow) | 🔄 Prototype ✅ · Production ⬜ |
+| **E4** | Merchant Flow — Simulation & Application | Phase 2 — Merchant Flow | 30 Apr | P0 - Blocker | E3 (Auth), E7 (Scoring) | 🔄 Frontend ✅ · API ⬜ |
+| **E12** *(Phase 1 only)* | Partner Redirect Integration — Adapundi + OCBC | Phase 2 — Merchant Flow | 30 Apr | P0 - Critical | E4 (Merchant Flow) | 🔄 Prototype ✅ · Production ⬜ |
 
-> **E12 Phase 1 note:** Phase 1 is a simple URL redirect (Adapundi) + "Coming Soon" card (OCBC) — no API integration required. Already live in `demo/management-prototype`. Production deployment targets end of March.
+> **E12 Phase 1 note:** Phase 1 is a simple URL redirect (Adapundi) + "Coming Soon" card (OCBC) — no API integration required. Already live in `demo/management-prototype`. Production deployment for web app targets end of April.
 
 ### Q2 2026
 
 | Epic ID | Epic Name | Phase | Deadline | Priority | Dependencies | Status |
 |---------|-----------|-------|----------|----------|--------------|--------|
-| **E8** | SLA Management | Phase 3 — Partner Portal | 15 Apr | P0 - Critical | E4 (Merchant Submit), **Partner signed MOU** | 🔄 UI ✅ · Backend ⬜ |
-| **E5** | Partner Portal — Review & Decision | Phase 3 — Partner Portal | 15 Apr | P0 - Critical | E4 (Merchant Flow), E7 (Score), **Partner willingness / signed MOU** ⚠️ | 🔄 Frontend ✅ · API ⬜ |
-| **E6** | Admin Portal — Operations & Monitoring | Phase 4 — Admin & Data | 30 Apr | P0 - Critical | E5 (Partner), E8 (SLA), **Partner willingness / signed MOU** ⚠️ | 🔄 Frontend ✅ · API ⬜ |
-| **E10** | Data Team & Management Views | Phase 4 — Admin & Data | 30 Apr | P1 - High | E4 (Merchant), E5 (Partner), **Partner data flowing** ⚠️ | 🔄 Frontend ✅ · API ⬜ |
+| **E8** | SLA Management | Phase 3 — Partner Portal | 31 May | P0 - Critical | E4 (Merchant Submit), **Partner signed MOU** | 🔄 UI ✅ · Backend ⬜ |
+| **E5** | Partner Portal — Review & Decision | Phase 3 — Partner Portal | 31 May | P0 - Critical | E4 (Merchant Flow), E7 (Score), **Partner willingness / signed MOU** ⚠️ | 🔄 Frontend ✅ · API ⬜ |
+| **E6** | Admin Portal — Operations & Monitoring | Phase 4 — Admin & Data | 31 May | P0 - Critical | E5 (Partner), E8 (SLA), **Partner willingness / signed MOU** ⚠️ | 🔄 Frontend ✅ · API ⬜ |
+| **E10** | Data Team & Management Views | Phase 4 — Admin & Data | 31 May | P1 - High | E4 (Merchant), E5 (Partner), **Partner data flowing** ⚠️ | 🔄 Frontend ✅ · API ⬜ |
 | **E9** | Database & Seed Data | Phase 5 — Backend APIs | 31 May | P0 - Critical | E1 (Migration runner) | 🔄 Partial |
 | **E11** | Testing & QA | Phase 5 — Backend APIs | 31 May | P1 - High | All Epics | ⬜ Todo |
 
@@ -78,16 +78,22 @@ E1  Foundation                          │ ██             │              
 E2  Design System                       │ ██             │               │               │
 E3  Auth & RBAC              [▶ NOW]    │ ████           │               │               │
 E7  Scoring Engine           [▶ NOW]    │    ████████    │               │               │
-E4  Merchant Flow                       │ ████████████  │               │               │
-E12 Adapundi + OCBC redirect  [▶ NOW]  │         ██████│               │               │
-E8  SLA Management                      │        ████████████            │               │
-E5  Partner Portal           [⚠️ MOU]  │        ████████████            │               │
-E6  Admin Portal             [⚠️ MOU]  │               │ ████████████  │               │
-E10 Data & Management        [⚠️ MOU]  │               │ ████████████  │               │
+E4  Merchant Flow  (web akhir Apr)      │ ████████████████████████      │               │
+E12 Adapundi+OCBC redirect (akhir Apr)  │         ██████████████████    │               │
+E8  SLA Management           [⚠️ MOU]  │        ████████████████████████████████       │
+E5  Partner Portal (akhir Mei)[⚠️ MOU] │        ████████████████████████████████       │
+E6  Admin Portal   (akhir Mei)[⚠️ MOU] │               │ ████████████████████████████  │
+E10 Data & Mgmt    (akhir Mei)[⚠️ MOU] │               │ ████████████████████████████  │
 E9  Database & Seeds                    │    ████████████████████████████│               │
 E11 Testing & QA                        │               │               │ ████████████  │
 E12 Full API (Phase 2)       [🔒 docs] │               │               │ ████████████████████████
 E13 Production Infrastructure           │               │               │               │ ████████████
+```
+
+**Backoffice (separate app):**
+```
+Backoffice Adapundi             akhir Maret ████████████
+Backoffice OCBC                 akhir April              ████████████████████████
 ```
 
 **Legend:** `██` Done · `▶` In Progress · `⚠️` Needs partner MOU · `🔒` Blocked on external
@@ -134,7 +140,7 @@ E3 (Auth backend) → E7 (Scoring) → E4 (Merchant API) → E12-Phase1 (redirec
 | File | Description |
 |------|-------------|
 | `docs/ROADMAP.md` | This file — high-level roadmap in Markdown |
-| `docs/OMM-2026-Roadmap.xlsx` | Excel version with 2 sheets: Product Roadmap + Gantt Timeline |
+| `docs/OMM-2026-Roadmap.xlsx` | Excel version with 4 sheets: Product Roadmap, Epic Timeline, Master Timeline (Visual), Master Timeline (Table) |
 | `docs/EPICS_TASKS.md` | Full epic breakdown with tasks, acceptance criteria, estimates |
 | `docs/PRD.md` | Product requirements document |
 | `docs/API_LIST.md` | All API endpoints with request/response schemas |
